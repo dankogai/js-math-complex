@@ -1,5 +1,5 @@
 /*
- * $Id: base64.js,v 1.1 2009/03/01 22:38:45 dankogai Exp dankogai $
+ * $Id: complex.js,v 0.1 2010/08/13 14:12:29 dankogai Exp dankogai $
  */
 
 (function(){
