@@ -1,5 +1,5 @@
 /*
- * $Id: complex.js,v 0.3 2010/08/13 17:39:18 dankogai Exp dankogai $
+ * $Id: complex.js,v 0.4 2010/08/13 19:18:44 dankogai Exp dankogai $
  */
 
 (function(){
@@ -37,7 +37,7 @@
         },
         sub:function(that){
             return (that.constructor === this.constructor)
-                ? new Math.Complex(this.re - that.re, this.im + that.im)
+                ? new Math.Complex(this.re - that.re, this.im - that.im)
                 : new Math.Complex(this.re - that*1,  this.im);
         },
         mul:function(that){
@@ -84,7 +84,21 @@
                     abs * Math.sin(arg)
                 );
             }
-        }
+        },
+        eq:function(that){
+            if (that.constructor === this.constructor){
+                return this.re === that.re && this.im === that.im;
+            }else{
+                return this.eq(new Math.Complex(that, 0));
+            }
+        },
+        lt:function(that){
+            if (that.constructor === this.constructor){
+                return this.re === that.re && this.im === that.im;
+            }else{
+                return this.lt(new Math.Complex(that, 0));
+            }
+        },
     };
     /* functions exported for convenience */
     cplx  = function(re, im){ return new Math.Complex(re, im) };
