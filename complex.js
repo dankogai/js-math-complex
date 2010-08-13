@@ -1,17 +1,16 @@
 /*
- * $Id: complex.js,v 0.2 2010/08/13 15:47:46 dankogai Exp dankogai $
+ * $Id: complex.js,v 0.3 2010/08/13 17:39:18 dankogai Exp dankogai $
  */
 
 (function(){
     if (Math.Complex) return;
     Math.Complex = function(re, im){
-	   this.re = re;
-	   this.im = im;
+	   this.re = re ? re : 0;
+	   this.im = im ? im : 0;
     };
     Math.Complex.prototype = {
         toString:function(){
-            var s = '';
-            if (this.re) s += this.re;
+            var s =  '' + this.re;
             if (this.im) {
                 if (this.im > 0) s+= '+';
                 s += this.im;
@@ -57,7 +56,9 @@
                     (this.im * that.re - this.re * that.im) / d
                 );
             }else{
-                return new Math.Complex(this.re / (that*1),  this.im / (that*1));
+                return new Math.Complex(
+		    this.re / (that*1),  this.im / (that*1)
+	        );
             }
         },
         exp:function(){
@@ -75,6 +76,7 @@
             if (that.constructor === this.constructor){
                 return that.mul(this.log()).exp();                
             }else{
+                if (this.re < 0) return this.pow(new Math.Complex(that, 0));
                 var abs = Math.pow(this.abs(), that*1);
                 var arg = this.arg() * that*1;
                 return new Math.Complex(
