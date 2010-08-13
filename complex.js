@@ -1,12 +1,12 @@
 /*
- * $Id: complex.js,v 0.5 2010/08/13 19:59:24 dankogai Exp dankogai $
+ * $Id: complex.js,v 0.6 2010/08/13 21:39:40 dankogai Exp dankogai $
  */
 
 (function(){
     if (Math.Complex) return;
     Math.Complex = function(re, im){
-	   this.re = re ? re : 0;
-	   this.im = im ? im : 0;
+       this.re = re ? re : 0;
+       this.im = im ? im : 0;
     };
     Math.Complex.prototype = {
         toString:function(){
@@ -51,21 +51,21 @@
         div:function(that){
             if (that.constructor === this.constructor){
                 var d = that.re * that.re + that.im * that.im;
-		if (d === 0) return new Math.Complex(this.re/0, this.im/0);
+                if (d === 0) return new Math.Complex(this.re/0, this.im/0);
                 return new Math.Complex(
                     (this.re * that.re + this.im * that.im) / d, 
                     (this.im * that.re - this.re * that.im) / d
                 );
             }else{
                 return new Math.Complex(
-		    this.re / (that*1),  this.im / (that*1)
-	        );
+                    this.re / (that*1),  this.im / (that*1)
+                );
             }
         },
         exp:function(){
             var abs = Math.exp(this.re);
             var arg = this.im;
-        　　return new Math.Complex(abs*Math.cos(arg), abs*Math.sin(arg));
+            return new Math.Complex(abs*Math.cos(arg), abs*Math.sin(arg));
         },
         log:function(){
             return new Math.Complex(
@@ -93,9 +93,9 @@
                 return this.eq(new Math.Complex(that, 0));
             }
         },
-	ne:function(that){
-	    return ! this.eq(that);
-	}
+    ne:function(that){
+        return ! this.eq(that);
+    }
     };
     /* functions exported for convenience */
     cplx  = function(re, im){ return new Math.Complex(re, im) };
