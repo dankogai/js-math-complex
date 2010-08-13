@@ -1,0 +1,45 @@
+<html>
+<title>Math.Complex</title>
+<script src="complex.js"></script>
+<body>
+<div style="border:outset 1px; padding:0.5em">
+<textarea cols="64" rows="32">
+var c1 = new Math.Complex(1,2);
+var c2 = new Math.Complex(3,4);
+p(c1);
+p(c1.neg());
+p(c1.con());
+p(c1.add(c2));
+p(c1.add(42));
+p(c1.sub(c2));
+p(c1.sub(42));
+p(c1.mul(c2));
+p(c1.mul(42));
+p(c1.div(c2));
+p(c1.div(42));
+</textarea><br><input type="submit" value="run"   onclick="rundom(this)"
+><input type="submit" value="clear" onclick="clsdom(this)"
+><pre></pre>
+</div>
+
+<script>
+rundom = function(that){
+    try{
+        var out = that.nextSibling.nextSibling;
+        var p = function(s){
+            out.innerHTML += s,
+            out.appendChild(document.createElement('br'));
+        }
+        var e = that.previousSibling.previousSibling;
+        var f = new Function( 'p', (e.value || e.innerText || e.textContent) );
+        f(p);     
+    }catch(e){
+        alert(e);
+    }
+};
+clsdom = function(that){
+  that.nextSibling.innerHTML = '';
+};
+</script>
+</body>
+</html>
