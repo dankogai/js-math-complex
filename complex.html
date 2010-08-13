@@ -17,6 +17,8 @@ p(c1.mul(c2));
 p(c1.mul(2));
 p(c1.div(c2));
 p(c1.div(2));
+p(c1.div(cplx(0,0)));
+p(c1.div(0));
 p(c1.arg());
 p(c1.abs());
 p(cplxe(c1.abs(),c1.arg()));
@@ -25,6 +27,10 @@ p(c1.log());
 p(c1.pow(c2));
 p(c1.pow(2));
 p(cplx(-2.5).pow(-2.5));
+p(c1.eq(c1));
+p(c1.eq(c2));
+p(c1.ne(c1));
+p(c1.ne(c2));
 </textarea><br><input type="submit" value="run"   onclick="rundom(this)"
 ><input type="submit" value="clear" onclick="clsdom(this)"
 ><pre></pre>

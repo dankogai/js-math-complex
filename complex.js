@@ -1,5 +1,5 @@
 /*
- * $Id: complex.js,v 0.4 2010/08/13 19:18:44 dankogai Exp dankogai $
+ * $Id: complex.js,v 0.5 2010/08/13 19:59:24 dankogai Exp dankogai $
  */
 
 (function(){
@@ -51,6 +51,7 @@
         div:function(that){
             if (that.constructor === this.constructor){
                 var d = that.re * that.re + that.im * that.im;
+		if (d === 0) return new Math.Complex(this.re/0, this.im/0);
                 return new Math.Complex(
                     (this.re * that.re + this.im * that.im) / d, 
                     (this.im * that.re - this.re * that.im) / d
@@ -92,13 +93,9 @@
                 return this.eq(new Math.Complex(that, 0));
             }
         },
-        lt:function(that){
-            if (that.constructor === this.constructor){
-                return this.re === that.re && this.im === that.im;
-            }else{
-                return this.lt(new Math.Complex(that, 0));
-            }
-        },
+	ne:function(that){
+	    return ! this.eq(that);
+	}
     };
     /* functions exported for convenience */
     cplx  = function(re, im){ return new Math.Complex(re, im) };
