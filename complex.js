@@ -1,5 +1,5 @@
 /*
- * $Id: complex.js,v 0.1 2010/08/13 14:12:29 dankogai Exp dankogai $
+ * $Id: complex.js,v 0.2 2010/08/13 15:47:46 dankogai Exp dankogai $
  */
 
 (function(){
@@ -25,6 +25,12 @@
         con:function(){
           return new Math.Complex(this.re,-this.im);
         },
+        arg:function(){
+          return Math.atan2(this.im, this.re);
+        },
+        abs:function(){
+          return Math.sqrt(this.re*this.re + this.im*this.im);
+        },        
         add:function(that){
             return (that.constructor === this.constructor)
                 ? new Math.Complex(this.re + that.re, this.im + that.im)
@@ -54,5 +60,33 @@
                 return new Math.Complex(this.re / (that*1),  this.im / (that*1));
             }
         },
+        exp:function(){
+            var abs = Math.exp(this.re);
+            var arg = this.im;
+        　　return new Math.Complex(abs*Math.cos(arg), abs*Math.sin(arg));
+        },
+        log:function(){
+            return new Math.Complex(
+                Math.log(this.abs()),
+                this.arg()
+            );
+        },
+        pow:function(that){
+            if (that.constructor === this.constructor){
+                return that.mul(this.log()).exp();                
+            }else{
+                var abs = Math.pow(this.abs(), that*1);
+                var arg = this.arg() * that*1;
+                return new Math.Complex(
+                    abs * Math.cos(arg),
+                    abs * Math.sin(arg)
+                );
+            }
+        }
     };
+    /* functions exported for convenience */
+    cplx  = function(re, im){ return new Math.Complex(re, im) };
+    cplxe = function(abs, arg){
+      return new Math.Complex(abs*Math.cos(arg), abs*Math.sin(arg));
+    }
 })();
