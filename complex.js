@@ -1,13 +1,13 @@
 /*
- * $Id: complex.js,v 0.7 2011/12/18 23:22:13 dankogai Exp dankogai $
+ * $Id: complex.js,v 0.8 2011/12/18 23:51:31 dankogai Exp dankogai $
  */
 
 (function(global){
     if (global.Math.Complex) return;
     Math.Complex = function Complex(re, im){
 	if (this instanceof Math.Complex){
-	    this.re = 0 + re;
-	    this.im = 0 + im;
+	    this.re = re ? 0+re : 0;
+	    this.im = im ? 0+im : 0;
 	}else{
 	    return new Math.Complex(re, im);
 	}
