@@ -4,33 +4,37 @@
 <body>
 <div style="border:outset 1px; padding:0.5em">
 <textarea cols="64" rows="32">
+p(new Math.Complex(1, 1) instanceof Math.Complex);
+p(Math.Complex(1, 1) instanceof Math.Complex); /* new can be omitted */
+p(cplx(Math.SQRT1_2, Math.SQRT1_2));
+p(cplxe(1,Math.PI/4));
 var c1 = cplx(1,2);
 var c2 = cplx(3,4);
 p(c1);
-p(c1.neg());
-p(c1.con());
-p(c1.add(c2));
-p(c1.add(2));
-p(c1.sub(c2));
-p(c1.sub(2));
-p(c1.mul(c2));
-p(c1.mul(2));
-p(c1.div(c2));
-p(c1.div(2));
-p(c1.div(cplx(0,0)));
-p(c1.div(0));
-p(c1.arg());
-p(c1.abs());
+p('neg: ' + c1.neg());
+p('con: ' + c1.con());
+p('add: ' + c1.add(c2));
+p('add: ' + c1.add(2));
+p('sub: ' + c1.sub(c2));
+p('sub: ' + c1.sub(2));
+p('mul: ' + c1.mul(c2));
+p('mul: ' + c1.mul(2));
+p('div: ' + c1.div(c2));
+p('div: ' + c1.div(2));
+p('/0: '  + c1.div(cplx(0,0)));
+p('/0: '  + c1.div(0));
+p('arg: ' + c1.arg());
+p('abs: ' + c1.abs());
 p(cplxe(c1.abs(),c1.arg()));
-p(c1.exp());
-p(c1.log());
-p(c1.pow(c2));
-p(c1.pow(2));
-p(cplx(-2.5).pow(-2.5));
-p(c1.eq(c1));
-p(c1.eq(c2));
-p(c1.ne(c1));
-p(c1.ne(c2));
+p('exp: ' + c1.exp());
+p('log: ' + c1.log());
+p('pow: ' + c1.pow(c2));
+p('pow: ' + c1.pow(2));
+p('pow: ' + cplx(-2.5).pow(-2.5));
+p('eq: '  + c1.eq(c1));
+p('eq: '  + c1.eq(c2));
+p('ne: '  + c1.ne(c1));
+p('ne: '  + c1.ne(c2));
 </textarea><br><input type="submit" value="run"   onclick="rundom(this)"
 ><input type="submit" value="clear" onclick="clsdom(this)"
 ><pre></pre>
