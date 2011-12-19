@@ -1,5 +1,8 @@
 /*
- * $Id: complex.js,v 0.8 2011/12/18 23:51:31 dankogai Exp dankogai $
+ * $Id: complex.js,v 0.9 2011/12/18 23:59:44 dankogai Exp dankogai $
+ *
+ *  Licensed under the MIT license.
+ *  http://www.opensource.org/licenses/mit-license.php
  */
 
 (function(global){
