@@ -3,7 +3,7 @@
 <script src="complex.js"></script>
 <body>
 <div style="border:outset 1px; padding:0.5em">
-<textarea cols="64" rows="32">
+<textarea rows="48" style="width:100%;font-family:monospace">
 p(new Math.Complex(1, 1) instanceof Math.Complex);
 p(Math.Complex(1, 1) instanceof Math.Complex); /* new can be omitted */
 p(cplx(Math.SQRT1_2, Math.SQRT1_2));
@@ -35,6 +35,21 @@ p('eq: '  + c1.eq(c1));
 p('eq: '  + c1.eq(c2));
 p('ne: '  + c1.ne(c1));
 p('ne: '  + c1.ne(c2));
+p('sqrt:'  + cplx(2).sqrt());
+p('cos:'  + cplx(Math.PI/6).cos());
+p('sin:'  + cplx(Math.PI/6).sin());
+p('tan:'  + cplx(Math.PI/6).tan());
+p('acos:' + cplx(Math.SQRT1_2).acos());
+p('asin:' + cplx(Math.SQRT1_2).asin());
+p('atan:' + cplx(Math.SQRT1_2).atan());
+p('atan2:' + cplx(1).atan2(1));
+p('atan2:' + cplx(1).atan2(0));
+p('atan2:' + cplx(-1).atan2(0));
+p('atan2:' + cplx(0).atan2(0));
+with(Math.Complex){
+    p( exp(mul(Math.PI, cplx(0,1))) );
+    p(I);
+}
 </textarea><br><input type="submit" value="run"   onclick="rundom(this)"
 ><input type="submit" value="clear" onclick="clsdom(this)"
 ><pre></pre>
