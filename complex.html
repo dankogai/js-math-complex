@@ -3,7 +3,7 @@
 <script src="complex.js"></script>
 <body>
 <div style="border:outset 1px; padding:0.5em">
-<textarea rows="48" style="width:100%;font-family:monospace">
+<textarea rows="50" style="width:100%;font-family:monospace">
 p(new Math.Complex(1, 1) instanceof Math.Complex);
 p(Math.Complex(1, 1) instanceof Math.Complex); /* new can be omitted */
 p(cplx(Math.SQRT1_2, Math.SQRT1_2));
@@ -50,6 +50,10 @@ with(Math.Complex){
     p( exp(mul(Math.PI, cplx(0,1))) );
     p(I);
 }
+var c3 = new Math.Complex(c1);
+p(c3);
+p(c3.eq(c1));
+p(c1 === c3);
 </textarea><br><input type="submit" value="run"   onclick="rundom(this)"
 ><input type="submit" value="clear" onclick="clsdom(this)"
 ><pre></pre>
