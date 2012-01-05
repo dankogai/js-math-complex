@@ -1,5 +1,5 @@
 /*
- * $Id: complex.js,v 0.10 2012/01/04 08:57:08 dankogai Exp dankogai $
+ * $Id: complex.js,v 0.11 2012/01/05 04:31:57 dankogai Exp dankogai $
  *
  *  Licensed under the MIT license.
  *  http://www.opensource.org/licenses/mit-license.php
@@ -11,7 +11,9 @@
 (function(global) {
     if (global.Math.Complex) return;
     Math.Complex = function Complex(re, im) {
-        if (this instanceof Math.Complex) {
+        if (re instanceof Math.Complex) {
+            return new Math.Complex(re.re, re.im);
+        } else if (this instanceof Math.Complex) {
             this.re = re ? 0 + re : 0;
             this.im = im ? 0 + im : 0;
         }else {
@@ -34,11 +36,9 @@
     (function(methods) {
         for (var p in methods) CPLX.prototype[p] = methods[p];
         for (var p in methods) CPLX[p] = (function(method) {
-            return function() {
-                var args = slice.call(arguments),
-                    self = args.shift();
+            return function(self) {
                 if (! (self instanceof CPLX)) self = new CPLX(self);
-                return method.apply(self, args);
+                return method.apply(self, slice.call(arguments, 1));
             }
         })(methods[p]);
     })({
@@ -149,7 +149,7 @@
         }
     });
     /* functions exported for convenience */
-    global.cplx  = function(re, im) { return new CPLX(re, im) };
+    global.cplx = function(re, im) { return new CPLX(re, im) };
     global.cplxe = function(abs, arg) {
         return new CPLX(abs * Math.cos(arg), abs * Math.sin(arg));
     }
