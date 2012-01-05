@@ -1,5 +1,5 @@
 /*
- * $Id: complex.js,v 0.12 2012/01/05 09:49:18 dankogai Exp dankogai $
+ * $Id: complex.js,v 0.13 2012/01/05 10:51:24 dankogai Exp dankogai $
  *
  *  Licensed under the MIT license.
  *  http://www.opensource.org/licenses/mit-license.php
@@ -95,17 +95,9 @@
             return new CPLX(Math.log(this.abs()), this.arg());
         },
         pow: function(that) {
-            if (that.constructor === this.constructor) {
-                return that.mul(this.log()).exp();
-            }else {
-                if (this.re < 0) return this.pow(new CPLX(that, 0));
-                var abs = Math.pow(this.abs(), that * 1),
-                    arg = this.arg() * that * 1;
-                return new CPLX(
-                    abs * Math.cos(arg),
-                    abs * Math.sin(arg)
-                );
-            }
+            return (that.constructor === this.constructor)
+                ? that.mul(this.log()).exp()
+                : (new CPLX(that, 0)).mul(this.log()).exp();
         },
         sqrt: function() {
             return this.pow(0.5);
