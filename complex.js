@@ -1,5 +1,5 @@
 /*
- * $Id: complex.js,v 0.13 2012/01/05 10:51:24 dankogai Exp dankogai $
+ * $Id: complex.js,v 0.14 2012/01/06 13:13:18 dankogai Exp dankogai $
  *
  *  Licensed under the MIT license.
  *  http://www.opensource.org/licenses/mit-license.php
@@ -14,8 +14,8 @@
         if (re instanceof Math.Complex) {
             return new Math.Complex(re.re, re.im);
         } else if (this instanceof Math.Complex) {
-            this.re = re ? 0 + re : 0;
-            this.im = im ? 0 + im : 0;
+            this.re = re ? +re : 0;
+            this.im = im ? +im : 0;
         }else {
             return new Math.Complex(re, im);
         }
