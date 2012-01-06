@@ -1,5 +1,5 @@
 /*
- * $Id: complex.js,v 0.14 2012/01/06 13:13:18 dankogai Exp dankogai $
+ * $Id: complex.js,v 0.15 2012/01/06 15:12:37 dankogai Exp dankogai $
  *
  *  Licensed under the MIT license.
  *  http://www.opensource.org/licenses/mit-license.php
@@ -36,10 +36,13 @@
     (function(methods) {
         for (var p in methods) CPLX.prototype[p] = methods[p];
         for (var p in methods) CPLX[p] = (function(method) {
-            return function(self) {
-                if (! (self instanceof CPLX)) self = new CPLX(self);
-                return method.apply(self, slice.call(arguments, 1));
-            }
+            return method.length
+                ? function(x, y) {
+                    return method.call(x instanceof CPLX ? x : new CPLX(x), y);
+                }
+                : function(x) {
+                    return method.call(x instanceof CPLX ? x : new CPLX(x));
+                };
         })(methods[p]);
     })({
         neg: function() {
@@ -57,12 +60,12 @@
         add: function(that) {
             return (that.constructor === this.constructor)
                 ? new CPLX(this.re + that.re, this.im + that.im)
-                : new CPLX(this.re + that * 1, this.im);
+                : new CPLX(this.re + (+that), this.im);
         },
         sub: function(that) {
             return (that.constructor === this.constructor)
                 ? new CPLX(this.re - that.re, this.im - that.im)
-                : new CPLX(this.re - that * 1, this.im);
+                : new CPLX(this.re - (+that), this.im);
         },
         mul: function(that) {
             return (that.constructor === this.constructor)
@@ -70,7 +73,7 @@
                     this.re * that.re - this.im * that.im,
                     this.im * that.re + this.re * that.im
                 )
-                : new CPLX(this.re * (that * 1), this.im * (that * 1));
+                : new CPLX(this.re * (+that), this.im * (+that));
         },
         div: function(that) {
             if (that.constructor === this.constructor) {
@@ -82,7 +85,7 @@
                 );
             }else {
                 return new CPLX(
-                    this.re / (that * 1), this.im / (that * 1)
+                    this.re / (+that), this.im / (+that)
                 );
             }
         },
