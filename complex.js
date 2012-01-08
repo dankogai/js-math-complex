@@ -1,5 +1,5 @@
 /*
- * $Id: complex.js,v 0.15 2012/01/06 15:12:37 dankogai Exp dankogai $
+ * $Id: complex.js,v 0.16 2012/01/08 16:40:39 dankogai Exp dankogai $
  *
  *  Licensed under the MIT license.
  *  http://www.opensource.org/licenses/mit-license.php
@@ -32,7 +32,10 @@
         }
         return s;
     };
-    CPLX.I = j;
+    CPLX.I = CPLX.J = j;
+    CPLX.polar = function(abs, arg) {
+        return new CPLX(abs * Math.cos(arg), abs * Math.sin(arg));
+    },
     (function(methods) {
         for (var p in methods) CPLX.prototype[p] = methods[p];
         for (var p in methods) CPLX[p] = (function(method) {
@@ -56,6 +59,9 @@
         },
         abs: function() {
             return Math.sqrt(this.re * this.re + this.im * this.im);
+        },
+        abs2: function() {
+            return this.re * this.re + this.im * this.im;
         },
         add: function(that) {
             return (that.constructor === this.constructor)
@@ -103,7 +109,14 @@
                 : (new CPLX(that, 0)).mul(this.log()).exp();
         },
         sqrt: function() {
-            return this.pow(0.5);
+            /* return this.pow(0.5); */
+            /* http://en.wikipedia.org/wiki/Square_root#Algebraic_formula */
+            var r = this.abs();
+            return new CPLX(
+                Math.sqrt((r + this.re) / 2),
+                this.im < 0 ? -Math.sqrt((r - this.re) / 2)
+                            :  Math.sqrt((r - this.re) / 2)
+            );
         },
         cos: function() {
             return this.mul(j).exp().add(this.neg().mul(j).exp())
@@ -143,8 +156,6 @@
         }
     });
     /* functions exported for convenience */
-    global.cplx = function(re, im) { return new CPLX(re, im) };
-    global.cplxe = function(abs, arg) {
-        return new CPLX(abs * Math.cos(arg), abs * Math.sin(arg));
-    }
+    global.cplx     = CPLX;
+    global.cplxe    = CPLX.polar;
 })(this);
