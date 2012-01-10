@@ -1,5 +1,5 @@
 /*
- * $Id: complex.js,v 0.16 2012/01/08 16:40:39 dankogai Exp dankogai $
+ * $Id: complex.js,v 0.17 2012/01/10 11:01:12 dankogai Exp dankogai $
  *
  *  Licensed under the MIT license.
  *  http://www.opensource.org/licenses/mit-license.php
@@ -60,7 +60,7 @@
         abs: function() {
             return Math.sqrt(this.re * this.re + this.im * this.im);
         },
-        abs2: function() {
+        norm: function() {
             return this.re * this.re + this.im * this.im;
         },
         add: function(that) {
