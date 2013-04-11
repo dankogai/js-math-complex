@@ -1,5 +1,5 @@
 /*
- * $Id: complex.js,v 0.17 2012/01/10 11:01:12 dankogai Exp dankogai $
+ * $Id: math-complex.js,v 0.20 2013/04/11 14:45:30 dankogai Exp dankogai $
  *
  *  Licensed under the MIT license.
  *  http://www.opensource.org/licenses/mit-license.php
@@ -17,13 +17,13 @@
         } else if (this instanceof CPLX) {
             this.re = re ? +re : 0;
             this.im = im ? +im : 0;
-        }else {
+        } else {
             return new CPLX(re, im);
         }
     };
+    CPLX.VERSION = "0.2.0";
     var j = new CPLX(0, 1),
     slice = Array.prototype.slice;
-    CPLX.VERSION = "0.2.0";
     CPLX.prototype.toString = function() {
         var s = '' + this.re;
         if (this.im) {
@@ -90,7 +90,7 @@
                     (this.re * that.re + this.im * that.im) / d,
                     (this.im * that.re - this.re * that.im) / d
                 );
-            }else {
+            } else {
                 return new CPLX(
                     this.re / (+that), this.im / (+that)
                 );
