@@ -9,6 +9,7 @@
  */
 
 (function(global) {
+    'use strict';
     if (global.Math.Complex) return;
     Math.Complex = function Complex(re, im) {
         if (re instanceof Math.Complex) {
@@ -21,8 +22,8 @@
         }
     };
     var CPLX = Math.Complex,
-        j = new CPLX(0, 1),
-        slice = Array.prototype.slice;
+    j = new CPLX(0, 1),
+    slice = Array.prototype.slice;
     CPLX.prototype.toString = function() {
         var s = '' + this.re;
         if (this.im) {
@@ -36,17 +37,17 @@
     CPLX.polar = function(abs, arg) {
         return new CPLX(abs * Math.cos(arg), abs * Math.sin(arg));
     },
-    (function(methods) {
-        for (var p in methods) CPLX.prototype[p] = methods[p];
-        for (var p in methods) CPLX[p] = (function(method) {
-            return method.length
+    (function(meths) {
+        for (var p in meths) CPLX.prototype[p] = meths[p];
+        for (var p in meths) CPLX[p] = (function(meth) {
+            return meth.length
                 ? function(x, y) {
-                    return method.call(x instanceof CPLX ? x : new CPLX(x), y);
+                    return meth.call(x instanceof CPLX ? x : new CPLX(x), y);
                 }
-                : function(x) {
-                    return method.call(x instanceof CPLX ? x : new CPLX(x));
-                };
-        })(methods[p]);
+            : function(x) {
+                return meth.call(x instanceof CPLX ? x : new CPLX(x));
+            };
+        })(meths[p]);
     })({
         neg: function() {
             return new CPLX(-this.re, -this.im);
@@ -97,7 +98,7 @@
         },
         exp: function() {
             var abs = Math.exp(this.re),
-                arg = this.im;
+            arg = this.im;
             return new CPLX(abs * Math.cos(arg), abs * Math.sin(arg));
         },
         log: function() {
@@ -115,27 +116,27 @@
             return new CPLX(
                 Math.sqrt((r + this.re) / 2),
                 this.im < 0 ? -Math.sqrt((r - this.re) / 2)
-                            :  Math.sqrt((r - this.re) / 2)
+                    :  Math.sqrt((r - this.re) / 2)
             );
         },
         cos: function() {
             return this.mul(j).exp().add(this.neg().mul(j).exp())
-                    .div(2);
+                .div(2);
         },
         sin: function() {
             return this.mul(j).exp().sub(this.neg().mul(j).exp())
-                    .div(j.mul(2));
+                .div(j.mul(2));
         },
         tan: function() {
             return this.cos().div(this.sin());
         },
         acos: function() {
             return this.add(this.mul(this).neg().add(1).sqrt().mul(j))
-                    .log().mul(j).neg();
+                .log().mul(j).neg();
         },
         asin: function() {
             return this.mul(j).add(this.mul(this).neg().add(1).sqrt())
-                    .log().mul(j).neg();
+                .log().mul(j).neg();
         },
         atan: function() {
             var d = j.mul(this).add(1);
@@ -147,7 +148,7 @@
         eq: function(that) {
             if (that.constructor === this.constructor) {
                 return this.re === that.re && this.im === that.im;
-            }else {
+            } else {
                 return this.eq(new CPLX(that, 0));
             }
         },
