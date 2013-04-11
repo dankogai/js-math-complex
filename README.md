@@ -1,3 +1,5 @@
+[![build status](https://secure.travis-ci.org/dankogai/js-math-complex.png)](http://travis-ci.org/dankogai/js-math-complex)
+
 math-complex.js
 ===============
 
