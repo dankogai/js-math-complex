@@ -3,7 +3,7 @@
 math-complex.js
 ===============
 
-Complex number for JavaScript
+Complex Number for JavaScript
 
 USAGE
 -----
@@ -56,6 +56,14 @@ Constructor in polar form.
 
 In the followin example **z** is a complex number object.  Unless otherwise stated, all methods below return complex number objects.
 
+#### z.eq( *z1* )
+
+returns `true` if **z** equals *z1*, `false` otherwise.
+
+#### z.ne( *z1* )
+
+The opposite of z.eq( *z1 *)
+
 #### z.abs()
 
 returns the absolute value in `Number`.
@@ -66,71 +74,75 @@ returns the argument in `Number`.
 
 #### z.neg()
 
-returns the negative (complex) number.
+returns - **z**
 
 #### z.con()
 
 returns the conjugate.
 
+````javascript
+Math.Complex(re, im).con().eq(Math.Complex(re, -im));
+````
+
 #### z.norm()
 
 returns the norm in `Number`.
 
-#### z.add(*z1*)
+#### z.add( *z1* )
 
 **z** + *z1*.  *z1* can be either complex number or real number  If *z1* is a real number (`Number` object, that is), it is automatically converted to complex number before the calculation.  This applies to all binary methods.
 
-#### z.sub(*z1*)
+#### z.sub( *z1* )
 
 **z** - *z1*
 
-#### z.mul(*z1*)
+#### z.mul( *z1* )
 
 **z** * *z1*
 
-#### z.div(*z1*)
+#### z.div( *z1* )
 
 **z** / *z1*
 
 #### z.exp()
 
-Copmplex version of Math.exp(**z**) .
+Copmplex version of Math.exp( **z** ) .
 
 #### z.log()
 
-Copmplex version of Math.log(**z**) .
+Copmplex version of Math.log( **z** ) .
 
-#### z.pow(*z1*)
+#### z.pow( *z1* )
 
-Copmplex version of Math.exp(**z**, *z1*) .
+Copmplex version of Math.exp( **z**, *z1* ) .
 
 #### z.sin()
 
-Copmplex version of Math.sin(**z**) .
+Copmplex version of Math.sin( **z** ) .
 
 #### z.cos()
 
-Copmplex version of Math.cos(**z**) .
+Copmplex version of Math.cos( **z** ) .
 
 #### z.tan()
 
-Copmplex version of Math.tan(**z**) .
+Copmplex version of Math.tan( **z** ) .
 
 #### z.asin()
 
-Copmplex version of Math.asin(**z**) .
+Copmplex version of Math.asin( **z** ) .
 
 #### z.acos()
 
-Copmplex version of Math.acos(**z**) .
+Copmplex version of Math.acos( **z** ) .
 
 #### z.atan()
 
-Copmplex version of Math.atan(**z**) .
+Copmplex version of Math.atan( **z** ) .
 
 #### z.atan2(z1)
 
-Copmplex version of Math.atan2(**z**, z2) .
+Copmplex version of Math.atan2( **z**, *z1* ) .
 
 ### Functional Form
 
