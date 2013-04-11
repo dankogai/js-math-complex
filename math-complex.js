@@ -10,7 +10,7 @@
 
 (function(global) {
     'use strict';
-    if (global.Math.Complex) return;
+    if (Math.Complex) return;
     Math.Complex = function Complex(re, im) {
         if (re instanceof Math.Complex) {
             return new Math.Complex(re.re, re.im);
@@ -156,7 +156,4 @@
             return ! this.eq(that);
         }
     });
-    /* functions exported for convenience */
-    global.cplx     = CPLX;
-    global.cplxe    = CPLX.polar;
 })(this);

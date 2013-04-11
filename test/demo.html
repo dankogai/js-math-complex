@@ -4,6 +4,8 @@
 <body>
 <div style="border:outset 1px; padding:0.5em">
 <textarea rows="54" style="width:100%;font-family:monospace">
+var cplx = Math.Complex,
+    cplxe = Math.Complex.polar;
 p(new Math.Complex(1, 1) instanceof Math.Complex);
 p(Math.Complex(1, 1) instanceof Math.Complex); /* new can be omitted */
 p(cplx(Math.SQRT1_2, Math.SQRT1_2));

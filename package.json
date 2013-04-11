@@ -1,0 +1,27 @@
+{
+  "name": "js-math-complex",
+  "version": "0.1.7",
+  "description": "Complex Number for JavaScript",
+  "main": "math-complex.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "devDependencies": {
+      "mocha" : "*"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/dankogai/js-math-complex.git"
+  },
+  "keywords": [
+    "Math",
+    "Complex"
+  ],
+  "author": "Dan Kogai",
+  "license": "BSD",
+  "readmeFilename": "README.md",
+  "gitHead": "a2f9d45dd0ff25a764c7ea018451cc30ace3ed7a"
+}
