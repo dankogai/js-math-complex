@@ -11,19 +11,19 @@
 (function(global) {
     'use strict';
     if (Math.Complex) return;
-    Math.Complex = function Complex(re, im) {
-        if (re instanceof Math.Complex) {
-            return new Math.Complex(re.re, re.im);
-        } else if (this instanceof Math.Complex) {
+    var CPLX = function Complex(re, im) {
+        if (re instanceof CPLX) {
+            return new CPLX(re.re, re.im);
+        } else if (this instanceof CPLX) {
             this.re = re ? +re : 0;
             this.im = im ? +im : 0;
         }else {
-            return new Math.Complex(re, im);
+            return new CPLX(re, im);
         }
     };
-    var CPLX = Math.Complex,
-    j = new CPLX(0, 1),
+    var j = new CPLX(0, 1),
     slice = Array.prototype.slice;
+    CPLX.VERSION = "0.2.0";
     CPLX.prototype.toString = function() {
         var s = '' + this.re;
         if (this.im) {
@@ -156,4 +156,6 @@
             return ! this.eq(that);
         }
     });
+    // export
+    Math.Complex = CPLX;
 })(this);
