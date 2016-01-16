@@ -140,9 +140,15 @@ Copmplex version of Math.acos( **z** ) .
 
 Copmplex version of Math.atan( **z** ) .
 
-#### z.atan2(z1)
+#### z.approx(z1)
 
-Copmplex version of Math.atan2( **z**, *z1* ) .
+**z** is approximately equal to **z1**
+
+````
+ delta                    z - z1
+------- < EPSILON <=> abs(------) < 2*EPSILON
+average                   z + z1
+````
 
 ### Functional Form
 
