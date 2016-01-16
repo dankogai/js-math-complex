@@ -1,5 +1,5 @@
 /*
- * $Id: math-complex.js,v 0.20 2013/04/11 14:45:30 dankogai Exp dankogai $
+ * math-complex.js
  *
  *  Licensed under the MIT license.
  *  http://www.opensource.org/licenses/mit-license.php
@@ -21,7 +21,8 @@
             return new CPLX(re, im);
         }
     };
-    CPLX.VERSION = "0.2.0";
+    var EPSILON = Math.pow(2,-52);
+    CPLX.VERSION = "0.3.0";
     var j = new CPLX(0, 1),
     slice = Array.prototype.slice;
     CPLX.prototype.toString = function() {
@@ -142,9 +143,6 @@
             var d = j.mul(this).add(1);
             return d.con().log().sub(d.log()).mul(j).div(2);
         },
-        atan2: function(that) {
-            return this.div(that).atan();
-        },
         eq: function(that) {
             if (that.constructor === this.constructor) {
                 return this.re === that.re && this.im === that.im;
@@ -154,6 +152,15 @@
         },
         ne: function(that) {
             return ! this.eq(that);
+        },
+        approx: function(that) {
+            if (that.constructor === this.constructor) {
+                return this.re === that.re && this.im === that.im
+                    ? true
+                    : this.sub(that).abs()/this.add(that).abs() < 2*EPSILON;
+            } else {
+                return this.approx(new CPLX(that, 0));
+            }
         }
     });
     // export
