@@ -142,12 +142,12 @@ Copmplex version of Math.atan( **z** ) .
 
 #### z.approx(z1)
 
-**z** is approximately equal to **z1**
+**z** is approximately equal to **z1**.
 
 ````
- delta                    z - z1
-------- < EPSILON <=> abs(------) < 2*EPSILON
-average                   z + z1
+ delta                abs(z - z1)
+------- < EPSILON <=> ----------- < 2*EPSILON
+average               abs(z + z1)
 ````
 
 ### Functional Form
